@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+#include <vector>
 using namespace std;
 
 // Encryption Function
@@ -68,15 +69,27 @@ void chisquare(string inputText, int shift) {
     cout << "The decoded message is " << inputText << "\n";
 }
 
-void DictionaryCreation(string inputText, int shift) {
-    string dict1[];
-    int itemsDict;
-    cout<< "";
+int DictionaryCreation(){
+    vector<string> dict;
+    string item;
+    int x,lengthofdict;
+    cout<<"enter the no.of elements in your dictionary: ";
+    cin>>lengthofdict;
+    cout<< "Enter the words of your dictionary\n";
+    for(int i=0;i<lengthofdict;i++){
+        cin>>item;
+        dict.push_back(item);
     }
+    cout<<"your dictionary is\n";
+    for(auto x : dict){
+        cout<<x<<" ";
+    }
+    cout<<"\n";
+    return 0;
+}
 
 void DictionaryMatch(string inputText, int shift) {
-    string dict[];
-    }
+    
 
     cout << "The decoded message is " << inputText << "\n";
     cout << "The key is" << shift << "\n";
@@ -88,25 +101,28 @@ int main() {
     int shift,operation;
     char c;
 
-    cout << "Type \n'1' to encrypt \n'2' to decrypt\n:";
+    cout << "Type \n'1' to encrypt \n'2' to decrypt\n'3'for dictionary creation\n:";
     cin >> operation;
     
-    // Invalid case
+    //Invalid case
     if((operation != 1) && (operation != 2)) {
-        cout << "Invalid input\n";
+       cout << "Invalid input\n";
         return 0;
     }
+    if((operation == 1) || (operation == 2)) {
+        cout << "Type the message: ";
+        cin >> inputText;
 
-    cout << "Type the message: ";
-    cin >> inputText;
+        cout << "Enter the key(lowercase alphabet): ";
+        cin >> c;
+        shift=(int)c;
+        shift-=97;
 
-    cout << "Enter the key(lowercase alphabet): ";
-    cin >> c;
-    shift=(int)c;
-    shift-=97;
-
-    if(operation == 1) Encrypt(inputText,shift);
-    else Decrypt(inputText,shift);
-
+        if(operation == 1) Encrypt(inputText,shift);
+        else Decrypt(inputText,shift);
+    }
+    if(operation == 3) {
+        DictionaryCreation();
+    }
     return 0;
 }
